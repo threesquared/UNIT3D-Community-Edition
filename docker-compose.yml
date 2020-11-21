@@ -15,6 +15,16 @@ services:
     volumes:
       - app-data:/var/www/html
 
+  echo:
+    image: oanhnn/laravel-echo-server:latest
+    depends_on:
+      - redis
+    environment:
+      REDIS_HOST: redis
+      LARAVEL_ECHO_SERVER_PORT: 8443
+    ports:
+      - 8443:8443
+
   nginx:
     image: nginx:stable
     depends_on:
